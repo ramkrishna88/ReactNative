@@ -1,10 +1,15 @@
+// App.js
 import React from 'react';
-import {Text, View, StyleSheet} from 'react-native';
+import {View, StyleSheet} from 'react-native';
+import NavigationScreen from './navigation/Navigation';
+import {AuthProvider} from './context/AuthProvider';
 
 function App(): JSX.Element {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Hello World</Text>
+      <AuthProvider>
+        <NavigationScreen />
+      </AuthProvider>
     </View>
   );
 }
