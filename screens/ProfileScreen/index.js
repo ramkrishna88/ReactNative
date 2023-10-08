@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {View, Text, TextInput, Button, Alert} from 'react-native';
+import {View, TextInput, Button} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useAuth} from '../../context/AuthProvider';
 import styles from './styles';
@@ -44,13 +44,14 @@ function ProfileScreen({route, navigation}) {
           placeholder="Name"
           value={name}
           onChangeText={setName}
-          style={styles.input}
+          style={[styles.input, styles.blueText]}
         />
+        <View style={styles.divider} />
         <TextInput
           placeholder="Email"
           value={email}
           onChangeText={setEmail}
-          style={styles.input}
+          style={[styles.input, styles.blueText]}
         />
       </View>
       <Button title="Save" onPress={handleSaveProfile} />
