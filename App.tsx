@@ -3,10 +3,6 @@ import {View} from 'react-native';
 import NavigationScreen from './navigation/NavigationScreen';
 
 function App(): JSX.Element {
-  return (
-    <View>
-      <NavigationScreen />
-    </View>
-  );
+  return <NavigationScreen />;
 }
 export default App;
