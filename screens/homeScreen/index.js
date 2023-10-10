@@ -1,11 +1,11 @@
 import React from 'react';
 import {View, Text, FlatList, TouchableOpacity, Image} from 'react-native';
 import {useSelector, useDispatch} from 'react-redux';
-import {addToCart} from '../CartScreen/index';
+import {addToCart} from '../../features/CartItems/cartItems';
 import styles from './styles';
 
 const HomeScreen = () => {
-  const itemTypes = useSelector(state => Object.keys(state.items));
+  const items = useSelector(state => state.items);
   const dispatch = useDispatch();
 
   const addToCartHandler = item => {
@@ -14,21 +14,21 @@ const HomeScreen = () => {
 
   return (
     <FlatList
-      data={itemTypes}
+      data={Object.keys(items)}
       keyExtractor={itemType => itemType}
       renderItem={({item: itemType}) => (
         <View style={styles.itemTypeContainer}>
           <Text style={styles.itemTypeText}>{itemType}</Text>
           <FlatList
-            data={itemType}
+            data={items[itemType]}
             keyExtractor={item => item.id}
             horizontal
             renderItem={({item}) => (
               <View style={styles.card}>
                 <Image source={{uri: item.image}} style={styles.cardImage} />
-                <Text style={styles.cardText}>{item.id}</Text>
-                <Text style={styles.cardText}>{item.name}</Text>
-                <Text style={styles.cardText}>${item.price}</Text>
+                <Text style={styles.cardText}>Brand: {item.brand}</Text>
+                <Text style={styles.cardText}>Model: {item.model}</Text>
+                <Text style={styles.cardText}>Price: ${item.price}</Text>
                 <TouchableOpacity
                   style={styles.addToCartButton}
                   onPress={() => addToCartHandler(item)}>

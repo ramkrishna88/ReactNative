@@ -2,7 +2,7 @@ import React from 'react';
 import {Button} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {HomeScreen, LoginScreen, RegisterScreen} from '../screens';
+import {HomeScreen, LoginScreen, RegisterScreen, CartScreen} from '../screens';
 
 const Stack = createNativeStackNavigator();
 
@@ -15,18 +15,18 @@ function NavigationScreen() {
         <Stack.Screen
           name="Home"
           component={HomeScreen}
-          options={{
+          options={({navigation}) => ({
             title: 'Home Screen',
-            headerRight: navigation => (
+            headerRight: () => (
               <Button
                 onPress={() => {
-                  navigation.navigate('cartScreen');
+                  navigation.navigate('Cart');
                 }}
                 title="Cart"
                 color="red"
               />
             ),
-            headerLeft: navigation => (
+            headerLeft: () => (
               <Button
                 onPress={() => {
                   navigation.navigate('Logout');
@@ -35,8 +35,9 @@ function NavigationScreen() {
                 color="red"
               />
             ),
-          }}
+          })}
         />
+        <Stack.Screen name="Cart" component={CartScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
