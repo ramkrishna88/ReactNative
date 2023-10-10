@@ -1,28 +1,46 @@
 import React from 'react';
-import {View, Text, Button, StyleSheet} from 'react-native';
+import {View, Text, FlatList, TouchableOpacity, Image} from 'react-native';
+import {useSelector, useDispatch} from 'react-redux';
+import {addToCart} from '../CartScreen/index';
+import styles from './styles';
 
-const HomeScreen = ({navigation}) => {
+const HomeScreen = () => {
+  const itemTypes = useSelector(state => Object.keys(state.items));
+  const dispatch = useDispatch();
+
+  const addToCartHandler = item => {
+    dispatch(addToCart(item));
+  };
+
   return (
-    <View style={styles.container}>
-      <Text style={styles.text}>Home Screen</Text>
-      <Button
-        title="Go to Login"
-        onPress={() => navigation.navigate('Login')}
-      />
-    </View>
+    <FlatList
+      data={itemTypes}
+      keyExtractor={itemType => itemType}
+      renderItem={({item: itemType}) => (
+        <View style={styles.itemTypeContainer}>
+          <Text style={styles.itemTypeText}>{itemType}</Text>
+          <FlatList
+            data={itemType}
+            keyExtractor={item => item.id}
+            horizontal
+            renderItem={({item}) => (
+              <View style={styles.card}>
+                <Image source={{uri: item.image}} style={styles.cardImage} />
+                <Text style={styles.cardText}>{item.id}</Text>
+                <Text style={styles.cardText}>{item.name}</Text>
+                <Text style={styles.cardText}>${item.price}</Text>
+                <TouchableOpacity
+                  style={styles.addToCartButton}
+                  onPress={() => addToCartHandler(item)}>
+                  <Text style={styles.addToCartButtonText}>Add to Cart</Text>
+                </TouchableOpacity>
+              </View>
+            )}
+          />
+        </View>
+      )}
+    />
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center', // Center items vertically
-    alignItems: 'center', // Center items horizontally
-    backgroundColor: 'pink',
-  },
-  text: {
-    fontSize: 24, // Adjust the font size as needed
-  },
-});
 
 export default HomeScreen;
