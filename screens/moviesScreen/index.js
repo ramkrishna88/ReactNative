@@ -7,51 +7,32 @@ import {
   ActivityIndicator,
 } from 'react-native';
 import {Card, Title, Paragraph} from 'react-native-paper';
-
-const apiKey = 'e196c4dc7f1c579d934c1e6444b36924';
-
-const shuffleArray = array => {
-  // Create a copy of the array and shuffle it
-  const shuffledArray = [...array];
-  for (let i = shuffledArray.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [shuffledArray[i], shuffledArray[j]] = [shuffledArray[j], shuffledArray[i]];
-  }
-  return shuffledArray;
-};
+import {moviesApi} from '../../Api/api';
 
 const MoviesScreen = () => {
   const [movies, setMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   const fetchMovies = page => {
-    fetch(
-      `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&page=${page}`,
-      {
-        method: 'GET',
-        headers: {
-          accept: 'application/json',
-        },
-      },
-    )
-      .then(response => response.json())
+    moviesApi
+      .getMovies(page)
       .then(data => {
         if (data.results) {
-          const shuffledData = shuffleArray(data.results); // Shuffle the data
-          setMovies([...movies, ...shuffledData]);
+          console.log('data', data);
+          setMovies([...movies, ...data.results]);
           setIsLoading(false);
         }
       })
       .catch(error => {
-        console.error('Error fetching data: ', error);
+        console.error('Error fetching Movies data: ', error);
         setIsLoading(false);
       });
   };
 
   useEffect(() => {
-    setMovies([]); // Clear movies when the component mounts
+    setMovies([]);
     fetchMovies(1);
-  }, []); // Empty dependency array to run only on mount
+  }, []);
 
   const loadMoreMovies = () => {
     if (!isLoading) {

@@ -1,28 +1,24 @@
 import React, {useEffect, useState} from 'react';
-import {Text, StyleSheet, ScrollView} from 'react-native';
+import {Text, StyleSheet, ScrollView, Alert} from 'react-native';
 import {Card, Title, Paragraph} from 'react-native-paper';
+import {todosApi} from '../../Api/api';
 
 const HomeScreen = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    const apiUrl = 'https://jsonplaceholder.typicode.com/todos';
-    const headers = {
-      'Content-Type': 'application/json',
-      Authorization: 'Bearer YourAccessToken',
-    };
-
-    fetch(apiUrl, {
-      method: 'GET',
-      headers: headers,
-    })
-      .then(response => response.json())
-      .then(json => setData(json));
+    todosApi
+      .getTodos()
+      .then(data => setData(data))
+      .catch(error => {
+        console.error('Error fetching data: ', error);
+        Alert.alert('Error', 'Unable to load the Todo list', [{text: 'OK'}]);
+      });
   }, []);
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <Text style={styles.header}>Home Screen</Text>
+      <Text style={styles.header}>Todo List</Text>
       {data.map((item, index) => (
         <Card key={index} style={styles.card}>
           <Card.Content>

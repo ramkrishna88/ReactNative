@@ -1,22 +1,29 @@
 import React, {useEffect, useState} from 'react';
-import {View, ScrollView, ActivityIndicator, StyleSheet} from 'react-native';
+import {
+  View,
+  ScrollView,
+  ActivityIndicator,
+  StyleSheet,
+  Alert,
+} from 'react-native';
 import {Card, Title, Paragraph} from 'react-native-paper';
+import {NYCSchools} from '../../Api/api';
 
 const DetailsScreen = () => {
-  const [data, setData] = useState([]);
+  const [schoolData, setSchoolData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const apiUrl = 'https://data.cityofnewyork.us/resource/s3k6-pzi2.json';
 
   useEffect(() => {
-    fetch(apiUrl)
-      .then(response => response.json())
-      .then(json => {
-        setData(json);
+    NYCSchools.getNycSchools()
+      .then(data => {
+        console.log('data', data);
+        setSchoolData(data);
         setIsLoading(false);
       })
       .catch(error => {
         console.error('Error fetching data: ', error);
         setIsLoading(false);
+        Alert.alert('Error', 'Unable to load NYC Schools data', [{text: 'OK'}]);
       });
   }, []);
 
@@ -28,7 +35,7 @@ const DetailsScreen = () => {
             <ActivityIndicator size="large" color="#0000ff" />
           </View>
         ) : (
-          data.map((item, index) => (
+          schoolData.map((item, index) => (
             <Card key={index} style={styles.card}>
               <Card.Content>
                 <Title style={styles.title}>{item.school_name}</Title>
