@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react';
 import {
-  View,
   Text,
   ScrollView,
   Image,
@@ -56,7 +55,7 @@ const MoviesScreen = () => {
 
   const loadMoreMovies = () => {
     if (!isLoading) {
-      const nextPage = movies.length / 20 + 1; // 20 movies per page
+      const nextPage = movies.length / 20 + 1;
       setIsLoading(true);
       fetchMovies(nextPage);
     }
