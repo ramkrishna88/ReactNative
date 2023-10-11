@@ -2,7 +2,7 @@ import * as React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {Button} from 'react-native';
-import {HomeScreen, DetailsScreen} from '../screens';
+import {HomeScreen, DetailsScreen,MoviesScreen} from '../screens';
 
 const Stack = createNativeStackNavigator();
 
@@ -23,9 +23,18 @@ const NavigationScreen = () => {
                 }}
               />
             ),
+            headerRight: () => (
+              <Button
+                title="Movies"
+                onPress={() => {
+                  navigation.navigate('Movies');
+                }}
+              />
+            ),
           })}
         />
         <Stack.Screen name="Details" component={DetailsScreen} />
+        <Stack.Screen name="Movies" component={MoviesScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
