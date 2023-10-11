@@ -67,8 +67,10 @@ const CartScreen = () => {
       />
 
       <View style={styles.totalContainer}>
-        <Text style={styles.totalText}>Total Price: ${totalPrice}</Text>
-        <Text style={styles.totalText}>Total Quantity: {totalQuantity}</Text>
+        <Text style={styles.totalPriceText}>Total Price: ${totalPrice}</Text>
+        <Text style={styles.totalPriceText}>
+          Total Quantity: {totalQuantity}
+        </Text>
       </View>
     </View>
   );
