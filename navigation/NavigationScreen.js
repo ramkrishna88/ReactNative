@@ -3,10 +3,14 @@ import {Button} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {HomeScreen, LoginScreen, RegisterScreen, CartScreen} from '../screens';
+import {useDispatch} from 'react-redux';
+import {logoutAction} from '../features/Authentication/Authentication';
 
 const Stack = createNativeStackNavigator();
 
 function NavigationScreen() {
+  const dispatch = useDispatch();
+
   return (
     <NavigationContainer>
       <Stack.Navigator>
@@ -29,7 +33,8 @@ function NavigationScreen() {
             headerLeft: () => (
               <Button
                 onPress={() => {
-                  navigation.navigate('Logout');
+                  dispatch(logoutAction());
+                  navigation.navigate('Login');
                 }}
                 title="Logout"
                 color="red"

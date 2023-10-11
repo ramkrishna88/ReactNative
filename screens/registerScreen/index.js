@@ -1,10 +1,30 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {View, Text, TextInput, Image, TouchableOpacity} from 'react-native';
 import styles from './styles';
+import {useDispatch} from 'react-redux';
+import {registerAction} from '../../features/Authentication/Authentication';
 
 const RegisterScreen = ({navigation}) => {
   const imageUrl =
-    'https://m.media-amazon.com/images/I/71qKpIG4Q2L._AC_SL1500_.jpg'; // Replace with your image URL
+    'https://m.media-amazon.com/images/I/71qKpIG4Q2L._AC_SL1500_.jpg';
+
+  const dispatch = useDispatch();
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+
+  const handleRegister = () => {
+    const user = {
+      firstName,
+      lastName,
+      email,
+      password,
+    };
+    dispatch(registerAction(user));
+    navigation.navigate('Home');
+  };
 
   return (
     <View style={styles.container}>
@@ -19,32 +39,40 @@ const RegisterScreen = ({navigation}) => {
           style={styles.input}
           placeholder="First Name"
           placeholderTextColor="#999"
+          value={firstName}
+          onChangeText={text => setFirstName(text)}
         />
         <TextInput
           style={styles.input}
           placeholder="Last Name"
           placeholderTextColor="#999"
+          value={lastName}
+          onChangeText={text => setLastName(text)}
         />
         <TextInput
           style={styles.input}
           placeholder="Email"
           placeholderTextColor="#999"
+          value={email}
+          onChangeText={text => setEmail(text)}
         />
         <TextInput
           style={styles.input}
           placeholder="Password"
           placeholderTextColor="#999"
           secureTextEntry
+          value={password}
+          onChangeText={text => setPassword(text)}
         />
         <TextInput
           style={styles.input}
           placeholder="Confirm Password"
           placeholderTextColor="#999"
           secureTextEntry
+          value={confirmPassword}
+          onChangeText={text => setConfirmPassword(text)}
         />
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => navigation.navigate('Home')}>
+        <TouchableOpacity style={styles.button} onPress={handleRegister}>
           <Text style={styles.buttonText}>Register</Text>
         </TouchableOpacity>
         <TouchableOpacity
