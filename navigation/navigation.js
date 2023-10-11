@@ -17,7 +17,7 @@ const NavigationScreen = () => {
             title: 'Home',
             headerLeft: () => (
               <Button
-                title="Details"
+                title="Nyc Schools"
                 onPress={() => {
                   navigation.navigate('Details');
                 }}

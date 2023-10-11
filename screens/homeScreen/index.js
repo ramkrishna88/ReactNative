@@ -6,7 +6,16 @@ const HomeScreen = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    fetch('https://jsonplaceholder.typicode.com/todos')
+    const apiUrl = 'https://jsonplaceholder.typicode.com/todos';
+    const headers = {
+      'Content-Type': 'application/json',
+      Authorization: 'Bearer YourAccessToken',
+    };
+
+    fetch(apiUrl, {
+      method: 'GET',
+      headers: headers,
+    })
       .then(response => response.json())
       .then(json => setData(json));
   }, []);
