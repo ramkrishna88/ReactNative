@@ -4,7 +4,6 @@ const initialState = {
   user: null,
 };
 
-// Define the user reducer
 const userAuth = (state = initialState, action) => {
   switch (action.type) {
     case 'LOGIN':

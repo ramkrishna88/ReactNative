@@ -5,9 +5,10 @@ const styles = StyleSheet.create({
     marginVertical: 16,
   },
   itemTypeText: {
-    fontSize: 20,
+    fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 8,
+    marginStart: 24,
   },
   card: {
     backgroundColor: 'white',

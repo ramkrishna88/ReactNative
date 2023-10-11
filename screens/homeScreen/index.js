@@ -23,6 +23,7 @@ const HomeScreen = () => {
             data={items[itemType]}
             keyExtractor={item => item.id}
             horizontal
+            pagingEnabled
             renderItem={({item}) => (
               <View style={styles.card}>
                 <Image source={{uri: item.image}} style={styles.cardImage} />
