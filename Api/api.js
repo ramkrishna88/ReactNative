@@ -3,7 +3,9 @@ import {
   TodoAPiUrl,
   TodoEndPoint,
   moviesApiUrl,
+  MoviesEndPoint,
   NYCShoolApi,
+  NYCShoolApiEndPoint,
 } from '../config/ApiConfig.js';
 
 export const moviesApi = {
@@ -12,6 +14,7 @@ export const moviesApi = {
       apiHelper(
         'GET',
         moviesApiUrl,
+        MoviesEndPoint,
         {page},
         {
           Authorization: 'Bearer e196c4dc7f1c579d934c1e6444b36924',
@@ -37,6 +40,7 @@ export const NYCSchools = {
       apiHelper(
         'GET',
         NYCShoolApi,
+        NYCShoolApiEndPoint,
         {},
         {},
         data => {

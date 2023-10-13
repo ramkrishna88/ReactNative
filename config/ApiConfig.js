@@ -4,11 +4,8 @@ const page = '1';
 
 export const moviesApiUrl = `${baseUrl}?api_key=${apiKey}&page=${page}`;
 
-//export const MoviesAPiUrl = 'https://api.themoviedb.org/3/discover?/';
-//export const MoviesEndPoint = 'movie';
-
 export const TodoAPiUrl = 'https://jsonplaceholder.typicode.com/';
 export const TodoEndPoint = 'todos';
 
-export const NYCShoolApi =
-  'https://data.cityofnewyork.us/resource/s3k6-pzi2.json';
+export const NYCShoolApi = 'https://data.cityofnewyork.us/';
+export const NYCShoolApiEndPoint = 'resource/s3k6-pzi2.json';

@@ -35,11 +35,14 @@ export const apiHelper = async (
   try {
     const response = await fetch(url, {
       method,
+      params: JSON.stringify(params),
       headers: defaultHeaders,
     });
 
     const status = response.status;
+    console.log('Response Status:', status);
     if (status === 200) {
+      console.log('Response Data:', data);
       const data = await response.json();
       onSuccess(data);
     } else if (status === 201) {
