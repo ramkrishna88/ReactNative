@@ -1,10 +1,11 @@
 import React from 'react';
 import {Text, View} from 'react-native';
+import styles from './styles';
 
 const HomeScreen = () => {
   return (
-    <View>
-      <Text> this is home screen </Text>
+    <View style={styles.container}>
+      <Text style={styles.centeredText}>This is the home screen</Text>
     </View>
   );
 };
