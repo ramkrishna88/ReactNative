@@ -6,7 +6,9 @@
       "@assets/*": ["./src/assets/*"],
       "@components/*": ["./src/components/*"],
       "@screens/*": ["./src/screens/*"],
-      "@navigation/*": ["./src/navigation/*"]
+      "@navigation/*": ["./src/navigation/*"],
+      "@store/*": ["./src/store/*"],
+      "@products/*": ["./src/products/*"]
     }
   },
   "include": ["src"]
