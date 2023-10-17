@@ -1,12 +1,13 @@
 import React from 'react';
-import {ScrollView, View, Text} from 'react-native';
+import {ScrollView, View, Text, TouchableOpacity} from 'react-native';
 import {Card} from 'react-native-paper';
 import {
   useGetAllProductsQuery,
   useGetProductsQuery,
 } from 'src/features/Products/apiSlice';
+import styles from './styles';
 
-const LoginScreen = () => {
+const LoginScreen = ({navigation}) => {
   const {data: getAllProducts} = useGetAllProductsQuery();
   const {data: getProducts} = useGetProductsQuery('1');
 
@@ -15,13 +16,7 @@ const LoginScreen = () => {
 
   return (
     <ScrollView>
-      <View
-        style={{
-          flex: 1,
-          alignContent: 'center',
-          justifyContent: 'center',
-          padding: 16,
-        }}>
+      <View style={styles.container}>
         <Card>
           <Text>{JSON.stringify(getAllProducts)}</Text>
         </Card>

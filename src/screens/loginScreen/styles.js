@@ -7,10 +7,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     padding: 16,
   },
-  centeredText: {
-    textAlign: 'center',
-    fontSize: 20,
-  },
 });
 
 export default styles;
