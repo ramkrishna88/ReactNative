@@ -2,19 +2,32 @@ import React, {useState} from 'react';
 import {View} from 'react-native';
 import {Card, TextInput, Button} from 'react-native-paper';
 import auth from '@react-native-firebase/auth';
+import firestore from '@react-native-firebase/firestore';
 import {useNavigation} from '@react-navigation/native';
 
-const LoginScreen = () => {
+const RegisterScreen = () => {
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigation = useNavigation();
 
-  const handleLogin = async () => {
+  const handleRegister = async () => {
     try {
-      await auth().signInWithEmailAndPassword(email, password);
+      const userCredential = await auth().createUserWithEmailAndPassword(
+        email,
+        password,
+      );
+      const user = userCredential.user;
+      await firestore().collection('users').doc(user.uid).set({
+        firstName,
+        lastName,
+        email,
+        password,
+      });
       navigation.navigate('Home');
     } catch (error) {
-      console.error('Error logging in:', error);
+      console.error('Error registering user:', error);
     }
   };
 
@@ -22,6 +35,16 @@ const LoginScreen = () => {
     <View style={{flex: 1, justifyContent: 'center', padding: 16}}>
       <Card>
         <Card.Content>
+          <TextInput
+            label="First Name"
+            value={firstName}
+            onChangeText={text => setFirstName(text)}
+          />
+          <TextInput
+            label="Last Name"
+            value={lastName}
+            onChangeText={text => setLastName(text)}
+          />
           <TextInput
             label="Email"
             value={email}
@@ -35,8 +58,8 @@ const LoginScreen = () => {
           />
         </Card.Content>
         <Card.Actions>
-          <Button mode="contained" onPress={handleLogin}>
-            Login
+          <Button mode="contained" onPress={handleRegister}>
+            Register
           </Button>
         </Card.Actions>
       </Card>
@@ -44,4 +67,4 @@ const LoginScreen = () => {
   );
 };
 
-export default LoginScreen;
+export default RegisterScreen;
