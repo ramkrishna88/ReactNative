@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {View} from 'react-native';
+import {Image, View} from 'react-native';
 import {Card, TextInput, Button} from 'react-native-paper';
 import auth from '@react-native-firebase/auth';
 import {useNavigation} from '@react-navigation/native';
@@ -25,6 +25,12 @@ const LoginScreen = () => {
 
   return (
     <View style={styles.container}>
+      <Image
+        style={styles.image}
+        source={{
+          uri: 'https://i.pinimg.com/564x/16/dc/79/16dc794e4668862b6349ddb3b8244e67.jpg',
+        }}
+      />
       <Card>
         <Card.Content>
           <TextInput

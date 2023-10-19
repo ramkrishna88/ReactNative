@@ -5,7 +5,14 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     padding: 16,
-    backgroundColor: 'blue',
+    backgroundColor: '#6495ed',
+  },
+  image: {
+    width: 200,
+    height: 200,
+    borderRadius: 150 / 2,
+    alignSelf: 'center',
+    marginBottom: 30,
   },
 });
 

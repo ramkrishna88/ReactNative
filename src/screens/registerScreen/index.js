@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {View} from 'react-native';
+import {View, Image} from 'react-native';
 import {Card, TextInput, Button} from 'react-native-paper';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
@@ -34,6 +34,14 @@ const RegisterScreen = () => {
 
   return (
     <View style={styles.container}>
+      <View>
+        <Image
+          style={styles.image}
+          source={{
+            uri: 'https://i.pinimg.com/564x/01/62/70/016270ebec4d485b3e4c1cd3ea4da143.jpg',
+          }}
+        />
+      </View>
       <Card>
         <Card.Content>
           <TextInput
