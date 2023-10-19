@@ -4,6 +4,7 @@ import {Card, TextInput, Button} from 'react-native-paper';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 import {useNavigation} from '@react-navigation/native';
+import {styles} from './styles';
 
 const RegisterScreen = () => {
   const [firstName, setFirstName] = useState('');
@@ -32,7 +33,7 @@ const RegisterScreen = () => {
   };
 
   return (
-    <View style={{flex: 1, justifyContent: 'center', padding: 16}}>
+    <View style={styles.container}>
       <Card>
         <Card.Content>
           <TextInput

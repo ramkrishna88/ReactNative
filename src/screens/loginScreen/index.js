@@ -3,6 +3,7 @@ import {View} from 'react-native';
 import {Card, TextInput, Button} from 'react-native-paper';
 import auth from '@react-native-firebase/auth';
 import {useNavigation} from '@react-navigation/native';
+import styles from './styles';
 
 const LoginScreen = () => {
   const [email, setEmail] = useState('');
@@ -18,8 +19,12 @@ const LoginScreen = () => {
     }
   };
 
+  const handleRegister = () => {
+    navigation.navigate('Register');
+  };
+
   return (
-    <View style={{flex: 1, justifyContent: 'center', padding: 16}}>
+    <View style={styles.container}>
       <Card>
         <Card.Content>
           <TextInput
@@ -37,6 +42,11 @@ const LoginScreen = () => {
         <Card.Actions>
           <Button mode="contained" onPress={handleLogin}>
             Login
+          </Button>
+        </Card.Actions>
+        <Card.Actions>
+          <Button mode="contained" onPress={handleRegister}>
+            Register
           </Button>
         </Card.Actions>
       </Card>
