@@ -13,6 +13,10 @@ const RegisterScreen = () => {
   const [password, setPassword] = useState('');
   const navigation = useNavigation();
 
+  const handleLogin = () => {
+    navigation.navigate('Login');
+  };
+
   const handleRegister = async () => {
     try {
       const userCredential = await auth().createUserWithEmailAndPassword(
@@ -69,6 +73,12 @@ const RegisterScreen = () => {
         <Card.Actions>
           <Button mode="contained" onPress={handleRegister}>
             Register
+          </Button>
+        </Card.Actions>
+
+        <Card.Actions>
+          <Button mode="contained" onPress={handleLogin}>
+            If you have an account, please login
           </Button>
         </Card.Actions>
       </Card>
