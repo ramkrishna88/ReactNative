@@ -75,7 +75,6 @@ const RegisterScreen = () => {
             Register
           </Button>
         </Card.Actions>
-
         <Card.Actions>
           <Button mode="contained" onPress={handleLogin}>
             If you have an account, please login
