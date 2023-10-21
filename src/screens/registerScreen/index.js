@@ -1,10 +1,16 @@
-import React, {useState} from 'react';
-import {View, Image} from 'react-native';
-import {Card, TextInput, Button} from 'react-native-paper';
+import React, {useState, useEffect} from 'react';
+import {View, Image, TouchableOpacity, Text, Alert} from 'react-native';
+import {Card, TextInput} from 'react-native-paper';
+import styles from './styles';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
+import storage from '@react-native-firebase/storage';
 import {useNavigation} from '@react-navigation/native';
-import {styles} from './styles';
+import crashlytics from '@react-native-firebase/crashlytics';
+import analytics from '@react-native-firebase/analytics';
+import perf from '@react-native-firebase/perf';
+import {Platform} from 'react-native';
+import remoteConfig from '@react-native-firebase/remote-config';
 
 const RegisterScreen = () => {
   const [firstName, setFirstName] = useState('');
@@ -12,10 +18,58 @@ const RegisterScreen = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigation = useNavigation();
+  const [firstNameLabel, setFirstNameLabel] = useState('');
+  const [lastNameLabel, setLastNameLabel] = useState('');
+  const [emailLabel, setEmailLabel] = useState('');
+  const [passwordLabel, setPasswordLabel] = useState('');
+  const [registerText, setRegisterText] = useState('');
+  const [loginText, setLoginText] = useState('');
 
   const handleLogin = () => {
     navigation.navigate('Login');
   };
+
+  useEffect(() => {
+    async function screenTrace() {
+      try {
+        const trace = await perf().startScreenTrace('RegisterScreen');
+        if (Platform.OS === 'android') {
+          trace.putAttribute('firstName', firstName);
+          trace.putAttribute('lastName', lastName);
+          trace.putAttribute('email', email);
+          trace.putAttribute('password', password);
+        }
+        await trace.stop();
+      } catch (e) {
+        console.log(e);
+        crashlytics().recordError(e);
+      }
+    }
+    screenTrace();
+  }, [firstName, lastName, email, password]);
+
+  useEffect(() => {
+    remoteConfig()
+      .fetchAndActivate()
+      .then(activated => {
+        if (activated) {
+          console.log('Remote config values activated.');
+          setFirstNameLabel(remoteConfig().getValue('firstName').asString());
+          setLastNameLabel(remoteConfig().getValue('lastName').asString());
+          setEmailLabel(remoteConfig().getValue('email_register').asString());
+          setPasswordLabel(
+            remoteConfig().getValue('password_register').asString(),
+          );
+          setRegisterText(remoteConfig().getValue('register').asString());
+          setLoginText(remoteConfig().getValue('register_login').asString());
+        } else {
+          console.log('Remote config values not activated.');
+        }
+      })
+      .catch(error => {
+        console.log('Error fetching remote config values:', error);
+      });
+  }, []);
 
   const handleRegister = async () => {
     try {
@@ -31,8 +85,18 @@ const RegisterScreen = () => {
         password,
       });
       navigation.navigate('Home');
+
+      // Log a register event to analytics
+      analytics().logEvent('Register', {
+        email: email,
+      });
     } catch (error) {
-      console.error('Error registering user:', error);
+      Alert.alert('Error', error.message);
+      console.log(error);
+      crashlytics().recordError(error);
+      analytics().logEvent('RegisterError', {
+        error: error.message,
+      });
     }
   };
 
@@ -49,37 +113,34 @@ const RegisterScreen = () => {
       <Card>
         <Card.Content>
           <TextInput
-            label="First Name"
+            label={firstNameLabel}
             value={firstName}
             onChangeText={text => setFirstName(text)}
           />
           <TextInput
-            label="Last Name"
+            label={lastNameLabel}
             value={lastName}
             onChangeText={text => setLastName(text)}
           />
           <TextInput
-            label="Email"
+            label={emailLabel}
             value={email}
             onChangeText={text => setEmail(text)}
           />
           <TextInput
-            label="Password"
+            label={passwordLabel}
             value={password}
             onChangeText={text => setPassword(text)}
             secureTextEntry
           />
+          <TouchableOpacity style={styles.touchButton} onPress={handleRegister}>
+            <Text>{registerText}</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity style={styles.touchButton} onPress={handleLogin}>
+            <Text>{loginText}</Text>
+          </TouchableOpacity>
         </Card.Content>
-        <Card.Actions>
-          <Button mode="contained" onPress={handleRegister}>
-            Register
-          </Button>
-        </Card.Actions>
-        <Card.Actions>
-          <Button mode="contained" onPress={handleLogin}>
-            If you have an account, please login
-          </Button>
-        </Card.Actions>
       </Card>
     </View>
   );
