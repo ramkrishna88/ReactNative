@@ -2,9 +2,18 @@ package com.reactnative;
 
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;
+import com.facebook.react.ReactPackage;
 import com.facebook.react.defaults.DefaultNewArchitectureEntryPoint;
 import com.facebook.react.defaults.DefaultReactActivityDelegate;
+import com.facebook.react.shell.MainReactPackage;
+
 import android.os.Bundle;
+
+import java.util.Arrays;
+import java.util.List;
+
+import io.invertase.firebase.config.ReactNativeFirebaseConfigPackage;
+
 
 public class MainActivity extends ReactActivity {
 
@@ -34,5 +43,10 @@ public class MainActivity extends ReactActivity {
         getMainComponentName(),
         // If you opted-in for the New Architecture, we enable the Fabric Renderer.
         DefaultNewArchitectureEntryPoint.getFabricEnabled());
+  }
+  protected List<ReactPackage> getPackages() {
+    return Arrays.asList(
+            new MainReactPackage(),
+            new ReactNativeFirebaseConfigPackage());
   }
 }

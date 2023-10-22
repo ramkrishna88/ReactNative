@@ -7,3 +7,5 @@ include ':react-native-firebase-analytics'
 include ':react-native-firebase-app'
 include ':react-native-firebase-crashlytics'
 include ':@react-native-firebase_storage'
+include ':@react-native-firebase_config'
+//project(':@react-native-firebase_config').projectDir = new File(rootProject.projectDir, './../node_modules/@react-native-firebase/remote-config/android')

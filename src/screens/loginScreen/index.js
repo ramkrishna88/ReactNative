@@ -21,7 +21,7 @@ const LoginScreen = () => {
   useEffect(() => {
     try {
       // Start a trace for the LoginScreen component
-      const trace = perf().startScreenTrace('LoginScreen');
+      const trace = perf().startTrace('LoginScreen');
 
       // Stop the trace when the component unmounts
       return () => {
