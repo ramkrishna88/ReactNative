@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {View, Text, Linking, TextInput, TouchableOpacity} from 'react-native';
+import {View, Text, TouchableOpacity} from 'react-native';
 import MapView, {Marker} from 'react-native-maps';
 import styles from './styles';
 import {BannerAd, BannerAdSize, TestIds} from 'react-native-google-mobile-ads';
@@ -22,6 +22,10 @@ const HomeScreen = () => {
 
   const handleGetDirections = () => {
     navigation.navigate('MapsDirections');
+  };
+
+  const sagaApiScreen = () => {
+    navigation.navigate('SagaApi');
   };
 
   useEffect(() => {
@@ -97,6 +101,10 @@ const HomeScreen = () => {
         style={styles.locationDetails2}
         onPress={handleGetDirections}>
         <Text style={styles.getDirectionsButtonText}>Get Directions</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity style={styles.locationDetails3} onPress={sagaApiScreen}>
+        <Text style={styles.getDirectionsButtonText}>Get Saga Api</Text>
       </TouchableOpacity>
 
       <View>

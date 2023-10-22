@@ -5,6 +5,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+    backgroundColor: 'skyblue',
   },
   map: {
     flex: 1,
@@ -12,7 +13,7 @@ const styles = StyleSheet.create({
   },
   locationDetails: {
     position: 'absolute',
-    bottom: 124,
+    bottom: 170,
     left: 16,
     right: 16,
     backgroundColor: 'white',
@@ -34,7 +35,7 @@ const styles = StyleSheet.create({
   },
   profileCard: {
     flex: 0.3,
-    top: 80,
+    top: 60,
     width: '100%',
     backgroundColor: 'white',
     padding: 8,
@@ -57,7 +58,16 @@ const styles = StyleSheet.create({
   },
   locationDetails2: {
     position: 'absolute',
-    bottom: 80,
+    bottom: 130,
+    left: 16,
+    right: 16,
+    backgroundColor: 'white',
+    padding: 8,
+    borderRadius: 8,
+  },
+  locationDetails3: {
+    position: 'absolute',
+    bottom: 90,
     left: 16,
     right: 16,
     backgroundColor: 'white',
