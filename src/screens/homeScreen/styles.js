@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
   },
   locationDetails: {
     position: 'absolute',
-    bottom: 24,
+    bottom: 124,
     left: 16,
     right: 16,
     backgroundColor: 'white',

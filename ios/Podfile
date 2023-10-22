@@ -34,7 +34,6 @@ target 'ReactNative' do
   pod 'RNFBAnalytics', :path => '../node_modules/@react-native-firebase/analytics'
   pod 'RNFBRemoteConfig', :path => '../node_modules/@react-native-firebase/remote-config'
   pod 'RNFBPerf', :path => '../node_modules/@react-native-firebase/perf'
-  pod 'RNFBInAppMessaging', :path => '../node_modules/@react-native-firebase/in-app-messaging'
   pod 'RNFBStorage', :path => '../node_modules/@react-native-firebase/storage'
 
   # Flags change depending on the env values.

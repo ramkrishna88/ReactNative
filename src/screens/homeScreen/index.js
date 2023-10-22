@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {View, Text} from 'react-native';
 import MapView, {Marker} from 'react-native-maps';
 import styles from './styles';
+import {BannerAd, BannerAdSize, TestIds} from 'react-native-google-mobile-ads';
 
 const HomeScreen = () => {
   const [region, setRegion] = useState({
@@ -12,6 +13,10 @@ const HomeScreen = () => {
   });
 
   const [locationName, setLocationName] = useState('United Kingdom');
+
+  const adUnitId = __DEV__
+    ? TestIds.BANNER
+    : 'ca-app-pub-1210860150241703~4656288705';
 
   const handleMapPress = event => {
     // Get the coordinates of the tapped location
@@ -51,6 +56,15 @@ const HomeScreen = () => {
       </MapView>
       <View style={styles.locationDetails}>
         <Text>{locationName}</Text>
+      </View>
+      <View>
+        <BannerAd
+          unitId={adUnitId}
+          size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER}
+          requestOptions={{
+            requestNonPersonalizedAdsOnly: true,
+          }}
+        />
       </View>
     </View>
   );

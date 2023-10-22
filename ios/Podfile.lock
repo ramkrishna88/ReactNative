@@ -663,9 +663,6 @@ PODS:
   - Firebase/Firestore (10.15.0):
     - Firebase/CoreOnly
     - FirebaseFirestore (~> 10.15.0)
-  - Firebase/InAppMessaging (10.15.0):
-    - Firebase/CoreOnly
-    - FirebaseInAppMessaging (~> 10.15.0-beta)
   - Firebase/Performance (10.15.0):
     - Firebase/CoreOnly
     - FirebasePerformance (~> 10.15.0)
@@ -737,12 +734,6 @@ PODS:
     - "gRPC-C++ (~> 1.50.1)"
     - leveldb-library (~> 1.22)
     - nanopb (< 2.30910.0, >= 2.30908.0)
-  - FirebaseInAppMessaging (10.15.0-beta):
-    - FirebaseABTesting (~> 10.0)
-    - FirebaseCore (~> 10.0)
-    - FirebaseInstallations (~> 10.0)
-    - GoogleUtilities/Environment (~> 7.8)
-    - nanopb (< 2.30910.0, >= 2.30908.0)
   - FirebaseInstallations (10.16.0):
     - FirebaseCore (~> 10.0)
     - GoogleUtilities/Environment (~> 7.8)
@@ -780,6 +771,9 @@ PODS:
     - GTMSessionFetcher/Core (< 4.0, >= 2.1)
   - fmt (6.2.1)
   - glog (0.3.5)
+  - Google-Mobile-Ads-SDK (10.12.0):
+    - GoogleAppMeasurement (< 11.0, >= 7.0)
+    - GoogleUserMessagingPlatform (>= 1.1)
   - GoogleAppMeasurement (10.15.0):
     - GoogleAppMeasurement/AdIdSupport (= 10.15.0)
     - GoogleUtilities/AppDelegateSwizzler (~> 7.11)
@@ -804,6 +798,7 @@ PODS:
     - GoogleUtilities/Environment (~> 7.7)
     - nanopb (< 2.30910.0, >= 2.30908.0)
     - PromisesObjC (< 3.0, >= 1.2)
+  - GoogleUserMessagingPlatform (2.1.0)
   - GoogleUtilities/AppDelegateSwizzler (7.11.5):
     - GoogleUtilities/Environment
     - GoogleUtilities/Logger
@@ -1345,10 +1340,6 @@ PODS:
     - nanopb (< 2.30910.0, >= 2.30908.0)
     - React-Core
     - RNFBApp
-  - RNFBInAppMessaging (18.5.0):
-    - Firebase/InAppMessaging (= 10.15.0)
-    - React-Core
-    - RNFBApp
   - RNFBPerf (18.5.0):
     - Firebase/Performance (= 10.15.0)
     - React-Core
@@ -1361,6 +1352,11 @@ PODS:
     - Firebase/Storage (= 10.15.0)
     - React-Core
     - RNFBApp
+  - RNGoogleMobileAds (12.3.0):
+    - Google-Mobile-Ads-SDK (= 10.12.0)
+    - GoogleUserMessagingPlatform (= 2.1.0)
+    - RCT-Folly (= 2021.07.22.00)
+    - React-Core
   - RNScreens (3.25.0):
     - React-Core
     - React-RCTImage
@@ -1415,10 +1411,10 @@ DEPENDENCIES:
   - "RNFBAuth (from `../node_modules/@react-native-firebase/auth`)"
   - "RNFBCrashlytics (from `../node_modules/@react-native-firebase/crashlytics`)"
   - "RNFBFirestore (from `../node_modules/@react-native-firebase/firestore`)"
-  - "RNFBInAppMessaging (from `../node_modules/@react-native-firebase/in-app-messaging`)"
   - "RNFBPerf (from `../node_modules/@react-native-firebase/perf`)"
   - "RNFBRemoteConfig (from `../node_modules/@react-native-firebase/remote-config`)"
   - "RNFBStorage (from `../node_modules/@react-native-firebase/storage`)"
+  - RNGoogleMobileAds (from `../node_modules/react-native-google-mobile-ads`)
   - RNScreens (from `../node_modules/react-native-screens`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
@@ -1438,15 +1434,16 @@ SPEC REPOS:
     - FirebaseCoreInternal
     - FirebaseCrashlytics
     - FirebaseFirestore
-    - FirebaseInAppMessaging
     - FirebaseInstallations
     - FirebasePerformance
     - FirebaseRemoteConfig
     - FirebaseSessions
     - FirebaseStorage
     - fmt
+    - Google-Mobile-Ads-SDK
     - GoogleAppMeasurement
     - GoogleDataTransport
+    - GoogleUserMessagingPlatform
     - GoogleUtilities
     - "gRPC-C++"
     - gRPC-Core
@@ -1552,14 +1549,14 @@ EXTERNAL SOURCES:
     :path: "../node_modules/@react-native-firebase/crashlytics"
   RNFBFirestore:
     :path: "../node_modules/@react-native-firebase/firestore"
-  RNFBInAppMessaging:
-    :path: "../node_modules/@react-native-firebase/in-app-messaging"
   RNFBPerf:
     :path: "../node_modules/@react-native-firebase/perf"
   RNFBRemoteConfig:
     :path: "../node_modules/@react-native-firebase/remote-config"
   RNFBStorage:
     :path: "../node_modules/@react-native-firebase/storage"
+  RNGoogleMobileAds:
+    :path: "../node_modules/react-native-google-mobile-ads"
   RNScreens:
     :path: "../node_modules/react-native-screens"
   Yoga:
@@ -1584,7 +1581,6 @@ SPEC CHECKSUMS:
   FirebaseCoreInternal: 26233f705cc4531236818a07ac84d20c333e505a
   FirebaseCrashlytics: a83f26fb922a3fe181eb738fb4dcf0c92bba6455
   FirebaseFirestore: b4c0eaaf24efda5732ec21d9e6c788d083118ca6
-  FirebaseInAppMessaging: 00746f589c1f3481530b5bdcca2bed3b44dccbe4
   FirebaseInstallations: b822f91a61f7d1ba763e5ccc9d4f2e6f2ed3b3ee
   FirebasePerformance: b7988bc06c87e9c3b9e6b1ae854cd460b646ebd6
   FirebaseRemoteConfig: 64b6ada098c649304114a817effd7e5f87229b11
@@ -1592,8 +1588,10 @@ SPEC CHECKSUMS:
   FirebaseStorage: 1d4be239ea32fb3c0f3680a6f2b706d6cabe37f2
   fmt: ff9d55029c625d3757ed641535fd4a75fedc7ce9
   glog: 04b94705f318337d7ead9e6d17c019bd9b1f6b1b
+  Google-Mobile-Ads-SDK: 976fdf273815674eed30b8aafffedb3c25b055e4
   GoogleAppMeasurement: 722db6550d1e6d552b08398b69a975ac61039338
   GoogleDataTransport: 54dee9d48d14580407f8f5fbf2f496e92437a2f2
+  GoogleUserMessagingPlatform: dce302b8f1b84d6e945812ee7a15c3f65a102cbf
   GoogleUtilities: 13e2c67ede716b8741c7989e26893d151b2b2084
   "gRPC-C++": 0968bace703459fd3e5dcb0b2bed4c573dbff046
   gRPC-Core: 17108291d84332196d3c8466b48f016fc17d816d
@@ -1645,14 +1643,14 @@ SPEC CHECKSUMS:
   RNFBAuth: b055663339aef8ce9d63cd5d03e2ea5360a3aca2
   RNFBCrashlytics: 9d5b36a7e280178c5d61695936cb812005bf17ad
   RNFBFirestore: a9837bc0c4d0911ade436787e995fa20a12a77b0
-  RNFBInAppMessaging: 750773db4bb2c334170116fa64745d39355b9d32
   RNFBPerf: 412b6dc5c628088be107a4956c0c9c2cfb65f314
   RNFBRemoteConfig: d43d2b59fb5e16911279e9953e6b40cc4b21449c
   RNFBStorage: aa0d6ac695aff1841f2b87285bb90ed6271d37d9
+  RNGoogleMobileAds: 558b3fa3c365aaba5d928b794b597fa85cff5494
   RNScreens: 85d3880b52d34db7b8eeebe2f1a0e807c05e69fa
   SocketRocket: f32cd54efbe0f095c4d7594881e52619cfe80b17
   Yoga: 86fed2e4d425ee4c6eab3813ba1791101ee153c6
 
-PODFILE CHECKSUM: c6ce3f354906ab68102bc19210a82e6980909750
+PODFILE CHECKSUM: 3b721ec781ec1c7221206111174e789dc59a6121
 
 COCOAPODS: 1.12.1
