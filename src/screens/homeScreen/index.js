@@ -1,12 +1,15 @@
 import React, {useEffect, useState} from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, Linking, TextInput, TouchableOpacity} from 'react-native';
 import MapView, {Marker} from 'react-native-maps';
 import styles from './styles';
 import {BannerAd, BannerAdSize, TestIds} from 'react-native-google-mobile-ads';
 import {Card} from 'react-native-paper';
 import auth from '@react-native-firebase/auth';
+import {useNavigation} from '@react-navigation/native';
+import MapViewDirections from 'react-native-maps-directions';
 
 const HomeScreen = () => {
+  const navigation = useNavigation();
   const [region, setRegion] = useState({
     latitude: 51.509865,
     longitude: -0.118092,
@@ -16,6 +19,10 @@ const HomeScreen = () => {
 
   const [user, setUser] = useState(null);
   const [locationName, setLocationName] = useState('United Kingdom');
+
+  const handleGetDirections = () => {
+    navigation.navigate('MapsDirections');
+  };
 
   useEffect(() => {
     const currentUser = auth().currentUser;
@@ -85,6 +92,13 @@ const HomeScreen = () => {
       <View style={styles.locationDetails}>
         <Text>{locationName}</Text>
       </View>
+
+      <TouchableOpacity
+        style={styles.locationDetails2}
+        onPress={handleGetDirections}>
+        <Text style={styles.getDirectionsButtonText}>Get Directions</Text>
+      </TouchableOpacity>
+
       <View>
         <BannerAd
           unitId={adUnitId}

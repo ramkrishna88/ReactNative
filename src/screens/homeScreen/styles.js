@@ -47,6 +47,23 @@ const styles = StyleSheet.create({
     marginBottom: 16,
     marginTop: 16,
   },
+  direction: {
+    bottom: 16,
+    left: 16,
+    right: 16,
+    backgroundColor: 'white',
+    padding: 8,
+    borderRadius: 8,
+  },
+  locationDetails2: {
+    position: 'absolute',
+    bottom: 80,
+    left: 16,
+    right: 16,
+    backgroundColor: 'white',
+    padding: 8,
+    borderRadius: 8,
+  },
 });
 
 export default styles;

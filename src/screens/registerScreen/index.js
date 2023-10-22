@@ -54,8 +54,8 @@ const RegisterScreen = () => {
       .then(activated => {
         if (activated) {
           console.log('Remote config values activated.');
-          setFirstNameLabel(remoteConfig().getValue('firstName').asString());
-          setLastNameLabel(remoteConfig().getValue('lastName').asString());
+          setFirstNameLabel(remoteConfig().getValue('first_name').asString());
+          setLastNameLabel(remoteConfig().getValue('last_name').asString());
           setEmailLabel(remoteConfig().getValue('email_register').asString());
           setPasswordLabel(
             remoteConfig().getValue('password_register').asString(),
