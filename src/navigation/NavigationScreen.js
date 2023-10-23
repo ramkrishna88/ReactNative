@@ -16,14 +16,6 @@ const NavigationScreen = () => {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen
-          name="Home"
-          component={HomeScreen}
-          options={{headerShown: false}}
-        />
-        <Stack.Screen name="MapsDirections" component={MapsDirectionsScreen} />
-        <Stack.Screen name="SagaApi" component={SagaApiScreen} />
-
-        <Stack.Screen
           name="Login"
           component={LoginScreen}
           options={{headerShown: false}}
@@ -35,6 +27,13 @@ const NavigationScreen = () => {
             headerShown: false,
           }}
         />
+        <Stack.Screen
+          name="Home"
+          component={HomeScreen}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen name="MapsDirections" component={MapsDirectionsScreen} />
+        <Stack.Screen name="SagaApi" component={SagaApiScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
