@@ -5,9 +5,11 @@ import {
   View,
   Image,
   PermissionsAndroid,
+  Platform,
 } from 'react-native';
 import styles from './styles';
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
+import {check, request, PERMISSIONS, RESULTS} from 'react-native-permissions';
 
 const HomeScreen = () => {
   const [selectedImage, setSelectedImage] = useState(null);
@@ -19,16 +21,32 @@ const HomeScreen = () => {
   };
 
   const openCamera = async () => {
-    const cameraPermission = await PermissionsAndroid.request(
-      PermissionsAndroid.PERMISSIONS.CAMERA,
-    );
+    if (Platform.OS === 'android') {
+      const cameraPermission = await PermissionsAndroid.request(
+        PermissionsAndroid.PERMISSIONS.CAMERA,
+      );
 
-    if (cameraPermission === PermissionsAndroid.RESULTS.GRANTED) {
-      launchCamera(options, response => {
-        if (!response.didCancel && !response.error) {
-          setSelectedImage(response.assets[0].uri);
-        }
-      });
+      if (cameraPermission === PermissionsAndroid.RESULTS.GRANTED) {
+        launchCamera(options, response => {
+          if (response && !response.didCancel && !response.error) {
+            setSelectedImage(response.assets[0]?.uri);
+          }
+        });
+      }
+    } else if (Platform.OS === 'ios') {
+      const cameraPermission = await request(PERMISSIONS.IOS.CAMERA);
+
+      if (cameraPermission === RESULTS.GRANTED) {
+        launchCamera(options, response => {
+          if (response && !response.didCancel && !response.error) {
+            setSelectedImage(response.assets[0]?.uri);
+          }
+        });
+      } else if (cameraPermission === RESULTS.DENIED) {
+        console.log('Camera permission denied');
+      } else if (cameraPermission === RESULTS.BLOCKED) {
+        console.log('Camera permission blocked');
+      }
     }
   };
 
