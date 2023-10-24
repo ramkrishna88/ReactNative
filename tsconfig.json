@@ -10,7 +10,8 @@
       "@store/*": ["./src/store/*"],
       "@action/*": ["./src/action/*"],
       "@reducer/*": ["./src/reducer/*"],
-      "@sagas/*": ["./src/sagas/*"]
+      "@sagas/*": ["./src/sagas/*"],
+      "@helper/*": ["./src/helper/*"]
     }
   },
   "include": ["src"]

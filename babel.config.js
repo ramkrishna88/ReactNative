@@ -14,6 +14,7 @@ module.exports = {
           '@actions': './src/actions',
           '@reducer': './src/reducer',
           '@sagas': './src/sagas',
+          '@helper': './src/helper',
         },
       },
     ],

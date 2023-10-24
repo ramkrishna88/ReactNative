@@ -1,6 +1,7 @@
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import NotificationHelper from '../helper/notificationHelper/NotificationHelper';
 import {
   HomeScreen,
   LoginScreen,
@@ -10,6 +11,10 @@ import {
 } from '@screens';
 
 const Stack = createNativeStackNavigator();
+
+NotificationHelper.initializeFCM();
+NotificationHelper.checkFCMPermission();
+NotificationHelper.getToken();
 
 const NavigationScreen = () => {
   return (
