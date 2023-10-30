@@ -5,12 +5,9 @@
 //  Created by itc on 30/10/2023.
 //
 
-#import <Foundation/Foundation.h>
+#import <React/RCTBridgeModule.h>
 
-NS_ASSUME_NONNULL_BEGIN
-
-@interface RCOther : NSObject
+@interface RCOther : NSObject <RCTBridgeModule>
 
 @end
 
-NS_ASSUME_NONNULL_END

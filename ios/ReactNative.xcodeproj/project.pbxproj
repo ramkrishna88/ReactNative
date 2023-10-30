@@ -12,6 +12,8 @@
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		62A5B70F2AF004850023F3E6 /* RNHello.m in Sources */ = {isa = PBXBuildFile; fileRef = 62A5B70E2AF004850023F3E6 /* RNHello.m */; };
+		62A5B7122AF00B290023F3E6 /* RCOther.m in Sources */ = {isa = PBXBuildFile; fileRef = 62A5B7112AF00B290023F3E6 /* RCOther.m */; };
 		7699B88040F8A987B510C191 /* libPods-ReactNative-ReactNativeTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-ReactNative-ReactNativeTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
@@ -41,6 +43,10 @@
 		5709B34CF0A7D63546082F79 /* Pods-ReactNative.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactNative.release.xcconfig"; path = "Target Support Files/Pods-ReactNative/Pods-ReactNative.release.xcconfig"; sourceTree = "<group>"; };
 		5B7EB9410499542E8C5724F5 /* Pods-ReactNative-ReactNativeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactNative-ReactNativeTests.debug.xcconfig"; path = "Target Support Files/Pods-ReactNative-ReactNativeTests/Pods-ReactNative-ReactNativeTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5DCACB8F33CDC322A6C60F78 /* libPods-ReactNative.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ReactNative.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		62A5B70D2AF004850023F3E6 /* RNHello.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNHello.h; sourceTree = "<group>"; };
+		62A5B70E2AF004850023F3E6 /* RNHello.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNHello.m; sourceTree = "<group>"; };
+		62A5B7102AF00B290023F3E6 /* RCOther.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RCOther.h; sourceTree = "<group>"; };
+		62A5B7112AF00B290023F3E6 /* RCOther.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RCOther.m; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = ReactNative/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-ReactNative-ReactNativeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactNative-ReactNativeTests.release.xcconfig"; path = "Target Support Files/Pods-ReactNative-ReactNativeTests/Pods-ReactNative-ReactNativeTests.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
@@ -92,6 +98,10 @@
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
 				13B07FB71A68108700A75B9A /* main.m */,
+				62A5B70D2AF004850023F3E6 /* RNHello.h */,
+				62A5B70E2AF004850023F3E6 /* RNHello.m */,
+				62A5B7102AF00B290023F3E6 /* RCOther.h */,
+				62A5B7112AF00B290023F3E6 /* RCOther.m */,
 			);
 			name = ReactNative;
 			sourceTree = "<group>";
@@ -207,7 +217,7 @@
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					13B07F861A680F5B00A75B9A = {
-						LastSwiftMigration = 1120;
+						LastSwiftMigration = 1500;
 					};
 				};
 			};
@@ -414,6 +424,8 @@
 			files = (
 				13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
+				62A5B70F2AF004850023F3E6 /* RNHello.m in Sources */,
+				62A5B7122AF00B290023F3E6 /* RCOther.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -602,8 +614,8 @@
 				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
-					" ",
-					"-Wl -ld_classic ",
+					"-Wl",
+					"-ld_classic",
 				);
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
@@ -676,8 +688,8 @@
 				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
-					" ",
-					"-Wl -ld_classic ",
+					"-Wl",
+					"-ld_classic",
 				);
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;

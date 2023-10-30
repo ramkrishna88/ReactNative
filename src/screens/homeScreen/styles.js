@@ -10,6 +10,12 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 20,
   },
+  dataContainer: {
+    marginTop: 20,
+    borderWidth: 1,
+    borderColor: 'black',
+    padding: 10,
+  },
 });
 
 export default styles;
