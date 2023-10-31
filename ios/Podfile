@@ -30,6 +30,11 @@ target 'ReactNative' do
   use_frameworks! :linkage => :static
   $RNFirebaseAsStaticFramework = true
   
+  pod 'RNFBApp', :path => '../node_modules/@react-native-firebase/app'
+  pod 'RNFBAnalytics', :path => '../node_modules/@react-native-firebase/analytics'
+  pod 'RNFBRemoteConfig', :path => '../node_modules/@react-native-firebase/remote-config'
+  pod 'RNFBPerf', :path => '../node_modules/@react-native-firebase/perf'
+  pod 'RNFBStorage', :path => '../node_modules/@react-native-firebase/storage'
 
   # Flags change depending on the env values.
   flags = get_default_flags()

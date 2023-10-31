@@ -1,9 +1,15 @@
-import React, {useState} from 'react';
-import {View, Text} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {View, Text, TouchableOpacity} from 'react-native';
 import MapView, {Marker} from 'react-native-maps';
 import styles from './styles';
+import {BannerAd, BannerAdSize, TestIds} from 'react-native-google-mobile-ads';
+import {Card} from 'react-native-paper';
+import auth from '@react-native-firebase/auth';
+import {useNavigation} from '@react-navigation/native';
+import MapViewDirections from 'react-native-maps-directions';
 
 const HomeScreen = () => {
+  const navigation = useNavigation();
   const [region, setRegion] = useState({
     latitude: 51.509865,
     longitude: -0.118092,
@@ -11,13 +17,32 @@ const HomeScreen = () => {
     longitudeDelta: 0.0421,
   });
 
+  const [user, setUser] = useState(null);
   const [locationName, setLocationName] = useState('United Kingdom');
 
-  const handleMapPress = event => {
-    // Get the coordinates of the tapped location
-    const {latitude, longitude} = event.nativeEvent.coordinate;
+  const handleGetDirections = () => {
+    navigation.navigate('MapsDirections');
+  };
 
-    // Update the region and location description
+  const sagaApiScreen = () => {
+    navigation.navigate('SagaApi');
+  };
+
+  useEffect(() => {
+    const currentUser = auth().currentUser;
+    if (currentUser) {
+      setUser(currentUser);
+    } else {
+      setUser(null);
+    }
+  }, []);
+
+  const adUnitId = __DEV__
+    ? TestIds.BANNER
+    : 'ca-app-pub-1210860150241703~4656288705';
+
+  const handleMapPress = event => {
+    const {latitude, longitude} = event.nativeEvent.coordinate;
     setRegion({
       ...region,
       latitude,
@@ -40,17 +65,56 @@ const HomeScreen = () => {
 
   return (
     <View style={styles.container}>
+      <Card style={styles.profileCard}>
+        <Card.Title title="Profile" />
+        <Card.Content>
+          {user ? (
+            <View>
+              <Text>
+                Welcome: {user.displayName ? user.displayName : user.email}
+              </Text>
+              <Text>Email: {user.email}</Text>
+            </View>
+          ) : (
+            <Text>No user is signed in.</Text>
+          )}
+        </Card.Content>
+      </Card>
+
       <MapView
         style={styles.map}
         initialRegion={region}
         onPress={handleMapPress}>
         <Marker
-          coordinate={{latitude: region.latitude, longitude: region.longitude}}
+          coordinate={{
+            latitude: region.latitude,
+            longitude: region.longitude,
+          }}
           title={locationName}
         />
       </MapView>
       <View style={styles.locationDetails}>
         <Text>{locationName}</Text>
+      </View>
+
+      <TouchableOpacity
+        style={styles.locationDetails2}
+        onPress={handleGetDirections}>
+        <Text style={styles.getDirectionsButtonText}>Get Directions</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity style={styles.locationDetails3} onPress={sagaApiScreen}>
+        <Text style={styles.getDirectionsButtonText}>Get Saga Api</Text>
+      </TouchableOpacity>
+
+      <View>
+        <BannerAd
+          unitId={adUnitId}
+          size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER}
+          requestOptions={{
+            requestNonPersonalizedAdsOnly: true,
+          }}
+        />
       </View>
     </View>
   );

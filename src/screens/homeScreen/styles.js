@@ -5,6 +5,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+    backgroundColor: 'skyblue',
   },
   map: {
     flex: 1,
@@ -12,7 +13,7 @@ const styles = StyleSheet.create({
   },
   locationDetails: {
     position: 'absolute',
-    bottom: 24,
+    bottom: 170,
     left: 16,
     right: 16,
     backgroundColor: 'white',
@@ -31,6 +32,47 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     color: 'white',
+  },
+  profileCard: {
+    flex: 0.3,
+    top: 60,
+    width: '100%',
+    backgroundColor: 'white',
+    padding: 8,
+    borderRadius: 8,
+  },
+  title: {
+    padding: 16,
+    fontSize: 16,
+    fontWeight: 'bold',
+    marginBottom: 16,
+    marginTop: 16,
+  },
+  direction: {
+    bottom: 16,
+    left: 16,
+    right: 16,
+    backgroundColor: 'white',
+    padding: 8,
+    borderRadius: 8,
+  },
+  locationDetails2: {
+    position: 'absolute',
+    bottom: 130,
+    left: 16,
+    right: 16,
+    backgroundColor: 'white',
+    padding: 8,
+    borderRadius: 8,
+  },
+  locationDetails3: {
+    position: 'absolute',
+    bottom: 90,
+    left: 16,
+    right: 16,
+    backgroundColor: 'white',
+    padding: 8,
+    borderRadius: 8,
   },
 });
 
