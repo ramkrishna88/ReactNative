@@ -10,10 +10,11 @@ const styles = StyleSheet.create({
   map: {
     flex: 1,
     width: '100%',
+    height: '40%',
   },
   locationDetails: {
     position: 'absolute',
-    bottom: 210,
+    bottom: 80,
     left: 16,
     right: 16,
     backgroundColor: 'skyblue',
@@ -67,7 +68,7 @@ const styles = StyleSheet.create({
   },
   locationDetails3: {
     position: 'absolute',
-    bottom: 130,
+    bottom: 160,
     left: 16,
     right: 16,
     backgroundColor: 'skyblue',

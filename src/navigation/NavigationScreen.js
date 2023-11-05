@@ -12,6 +12,7 @@ import {
   FirebaseAssignmentScreen,
   FireBaseUploadScreen,
   FireBaseEditScreen,
+  ImagesScreen,
 } from '@screens';
 
 const Stack = createNativeStackNavigator();
@@ -25,6 +26,16 @@ const NavigationScreen = () => {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen
+          name="Home"
+          component={HomeScreen}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="ImagesScreen"
+          component={ImagesScreen}
+          options={{headerShown: true}}
+        />
+        <Stack.Screen
           name="Login"
           component={LoginScreen}
           options={{headerShown: false}}
@@ -35,11 +46,6 @@ const NavigationScreen = () => {
           options={{
             headerShown: false,
           }}
-        />
-        <Stack.Screen
-          name="Home"
-          component={HomeScreen}
-          options={{headerShown: false}}
         />
         <Stack.Screen name="MapsDirections" component={MapsDirectionsScreen} />
         <Stack.Screen name="SagaApi" component={SagaApiScreen} />

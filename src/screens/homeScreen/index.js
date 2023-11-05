@@ -28,6 +28,10 @@ const HomeScreen = () => {
     navigation.navigate('SagaApi');
   };
 
+  const imagesScreen = () => {
+    navigation.navigate('ImagesScreen');
+  };
+
   const FireStoreScreen = () => {
     navigation.navigate('FireBaseAssignment');
   };
@@ -97,11 +101,12 @@ const HomeScreen = () => {
           title={locationName}
         />
       </MapView>
+
       <View style={styles.locationDetails}>
         <Text>{locationName}</Text>
       </View>
 
-      <TouchableOpacity
+      {/* <TouchableOpacity
         style={styles.locationDetails2}
         onPress={handleGetDirections}>
         <Text style={styles.getDirectionsButtonText}>Get Directions</Text>
@@ -115,6 +120,10 @@ const HomeScreen = () => {
         style={styles.locationDetails4}
         onPress={FireStoreScreen}>
         <Text style={styles.getDirectionsButtonText}>Assignment</Text>
+      </TouchableOpacity> */}
+
+      <TouchableOpacity style={styles.locationDetails3} onPress={imagesScreen}>
+        <Text style={styles.getDirectionsButtonText}>Images</Text>
       </TouchableOpacity>
 
       <View>

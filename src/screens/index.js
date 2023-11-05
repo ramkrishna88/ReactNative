@@ -6,6 +6,7 @@ import SagaApiScreen from '@screens/sagaApiScreen';
 import FirebaseAssignmentScreen from '@screens/firebaseAssignment';
 import FireBaseUploadScreen from '@screens/fireStoreUpload';
 import FireBaseEditScreen from '@screens/firebaseEdit';
+import ImagesScreen from '@screens/imagesScreen';
 
 export {
   HomeScreen,
@@ -16,4 +17,5 @@ export {
   FirebaseAssignmentScreen,
   FireBaseUploadScreen,
   FireBaseEditScreen,
+  ImagesScreen,
 };
