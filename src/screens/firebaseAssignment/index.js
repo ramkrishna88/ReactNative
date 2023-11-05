@@ -10,7 +10,7 @@ const FirebaseAssignmentScreen = () => {
   const [loadingMore, setLoadingMore] = useState(false);
   const [lastVisible, setLastVisible] = useState(null);
   const [displayedIds, setDisplayedIds] = useState(new Set());
-  const [refreshing, setRefreshing] = useState(false); // State for pull-to-refresh
+  const [refreshing, setRefreshing] = useState(false);
 
   // Default placeholder image URL
   const defaultImageURL = 'https://i.ytimg.com/vi/dET5Shsvrpo/sddefault.jpg';
