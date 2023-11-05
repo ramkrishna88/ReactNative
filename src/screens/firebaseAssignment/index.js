@@ -16,41 +16,45 @@ const FirebaseAssignmentScreen = () => {
   const defaultImageURL = 'https://i.ytimg.com/vi/dET5Shsvrpo/sddefault.jpg';
 
   const loadFeeds = async () => {
-    let query = firestore().collection('Feeds').orderBy('name');
+    try {
+      const query = firestore().collection('Feeds').orderBy('name');
 
-    if (lastVisible) {
-      query = query.startAfter(lastVisible);
-    }
-
-    const snapshot = await query.limit(10).get();
-    const newFeeds = snapshot.docs.map(doc => ({
-      id: doc.id,
-      ...doc.data(),
-    }));
-
-    // Shuffle the new data
-    const shuffledNewFeeds = newFeeds.sort(() => Math.random() - 0.5);
-
-    // Check if image is null or empty and replace it with the default image
-    shuffledNewFeeds.forEach(feed => {
-      if (!feed.image) {
-        feed.image = defaultImageURL;
+      if (lastVisible) {
+        query.startAfter(lastVisible);
       }
-    });
 
-    // Filter out items with duplicate IDs
-    const filteredFeeds = shuffledNewFeeds.filter(
-      feed => !displayedIds.has(feed.id),
-    );
+      const snapshot = await query.limit(10).get();
+      const newFeeds = snapshot.docs.map(doc => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
 
-    // Add the IDs of new items to the set of displayed IDs
-    filteredFeeds.forEach(feed => displayedIds.add(feed.id));
+      // Shuffle the new data
+      const shuffledNewFeeds = newFeeds.sort(() => Math.random() - 0.5);
 
-    setFeeds(prevFeeds => [...prevFeeds, ...filteredFeeds]);
-    setLastVisible(snapshot.docs[snapshot.docs.length - 1]);
-    setIsLoading(false);
-    setLoadingMore(false);
-    setRefreshing(false); // Stop the pull-to-refresh loading indicator
+      // Check if image is null or empty and replace it with the default image
+      shuffledNewFeeds.forEach(feed => {
+        if (!feed.image) {
+          feed.image = defaultImageURL;
+        }
+      });
+
+      // Filter out items with duplicate IDs
+      const filteredFeeds = shuffledNewFeeds.filter(
+        feed => !displayedIds.has(feed.id),
+      );
+
+      // Add the IDs of new items to the set of displayed IDs
+      filteredFeeds.forEach(feed => displayedIds.add(feed.id));
+
+      setFeeds(prevFeeds => [...prevFeeds, ...filteredFeeds]);
+      setLastVisible(snapshot.docs[snapshot.docs.length - 1]);
+      setIsLoading(false);
+      setLoadingMore(false);
+      setRefreshing(false); // Stop the pull-to-refresh loading indicator
+    } catch (error) {
+      console.error('Error loading data:', error);
+    }
   };
 
   useEffect(() => {

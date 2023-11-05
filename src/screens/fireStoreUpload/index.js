@@ -76,7 +76,7 @@ const FireBaseUploadScreen = () => {
 
   return (
     <View>
-      <Text style={styles.TextHeader}>What on Your Mind To ADD </Text>
+      <Text style={styles.TextHeader}>What's on Your Mind To ADD </Text>
       <TextInput
         style={styles.inputContainer}
         placeholder="Name"
