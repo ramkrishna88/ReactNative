@@ -28,6 +28,10 @@ const HomeScreen = () => {
     navigation.navigate('SagaApi');
   };
 
+  const FireStoreScreen = () => {
+    navigation.navigate('FireBaseAssignment');
+  };
+
   useEffect(() => {
     const currentUser = auth().currentUser;
     if (currentUser) {
@@ -105,6 +109,12 @@ const HomeScreen = () => {
 
       <TouchableOpacity style={styles.locationDetails3} onPress={sagaApiScreen}>
         <Text style={styles.getDirectionsButtonText}>Get Saga Api</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity
+        style={styles.locationDetails4}
+        onPress={FireStoreScreen}>
+        <Text style={styles.getDirectionsButtonText}>Assignment</Text>
       </TouchableOpacity>
 
       <View>

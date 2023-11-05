@@ -3,6 +3,8 @@ import LoginScreen from '@screens/loginScreen';
 import RegisterScreen from '@screens/registerScreen';
 import MapsDirectionsScreen from '@screens/directionsScreen';
 import SagaApiScreen from '@screens/sagaApiScreen';
+import FirebaseAssignmentScreen from '@screens/firebaseAssignment';
+import FireBaseUploadScreen from '@screens/fireStoreUpload';
 
 export {
   HomeScreen,
@@ -10,4 +12,6 @@ export {
   RegisterScreen,
   MapsDirectionsScreen,
   SagaApiScreen,
+  FirebaseAssignmentScreen,
+  FireBaseUploadScreen,
 };
