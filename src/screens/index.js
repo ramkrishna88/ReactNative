@@ -5,6 +5,7 @@ import MapsDirectionsScreen from '@screens/directionsScreen';
 import SagaApiScreen from '@screens/sagaApiScreen';
 import FirebaseAssignmentScreen from '@screens/firebaseAssignment';
 import FireBaseUploadScreen from '@screens/fireStoreUpload';
+import FireBaseEditScreen from '@screens/firebaseEdit';
 
 export {
   HomeScreen,
@@ -14,4 +15,5 @@ export {
   SagaApiScreen,
   FirebaseAssignmentScreen,
   FireBaseUploadScreen,
+  FireBaseEditScreen,
 };

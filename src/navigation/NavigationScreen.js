@@ -11,6 +11,7 @@ import {
   SagaApiScreen,
   FirebaseAssignmentScreen,
   FireBaseUploadScreen,
+  FireBaseEditScreen,
 } from '@screens';
 
 const Stack = createNativeStackNavigator();
@@ -63,6 +64,10 @@ const NavigationScreen = () => {
         />
 
         <Stack.Screen name="FireBaseUpload" component={FireBaseUploadScreen} />
+        <Stack.Screen
+          name="FireBaseEditScreen"
+          component={FireBaseEditScreen}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

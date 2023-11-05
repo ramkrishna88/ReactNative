@@ -5,6 +5,11 @@ const styles = StyleSheet.create({
     margin: 10,
     padding: 10,
   },
+  link: {
+    color: 'blue',
+    fontFamily: 'Helvetica',
+    fontSize: 16,
+  },
 });
 
 export default styles;
